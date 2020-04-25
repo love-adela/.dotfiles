@@ -1,9 +1,10 @@
 scriptencoding utf-8
+set nocompatible
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,cp949,default,latin1
 set shell=/bin/bash " http://stackoverflow.com/a/12231417
-set noerrorbells visualbell t_vb = 
+set noerrorbells visualbell t_vb=
 
 " Indentation
 set cindent
@@ -26,8 +27,8 @@ set number
 set cursorline
 
 augroup setgroup
-	autocmd!
-	autocmd GUIEnter * set visualbell t_vb=
+    autocmd!
+    autocmd GUIEnter * set visualbell t_vb=
 augroup END
 set laststatus=2
 
@@ -36,6 +37,7 @@ call plug#begin('~/.vim/plugged')
 " Themes
 Plug 'vim-airline/vim-airline'
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -43,6 +45,13 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'tpope/vim-sensible'
 "Plug 'simnalamburt/vim-tiny-ime', { 'do' : './build' }
 Plug 'simnalamburt/vim-mundo'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-vinegar'
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+Plug 'mhinz/vim-startify'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -76,3 +85,117 @@ nnoremap <silent> <C-h> :vertical resize -5<CR>
 nnoremap <silent> <C-j> :resize -3<CR>
 nnoremap <silent> <C-k> :resize +3<CR>
 nnoremap <silent> <C-l> :vertical resize +5<CR>
+
+" Tab navigations
+nnoremap <esc>t :tabnew<CR>
+nnoremap <esc>T :-tabnew<CR>
+nnoremap <esc>1 1gt
+nnoremap <esc>2 2gt
+nnoremap <esc>3 3gt
+nnoremap <esc>4 4gt
+nnoremap <esc>5 5gt
+nnoremap <esc>6 6gt
+nnoremap <esc>7 7gt
+nnoremap <esc>8 8gt
+nnoremap <esc>9 9gt
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" Viwiki
+let maplocalleader = "\\"
+let g:vimwiki_list = [
+    \{
+    \   'path': '~/workspace/adela.love/_wiki',
+    \   'ext' : '.md',
+    \   'diary_rel_path': '.',
+    \}
+\]
+
+let g:vimwiki_conceallevel = 0
+
+" vimwiki command
+command! WikiIndex :VimwikiIndex
+nmap <LocalLeader>ww <Plug>VimwikiIndex
+nmap <LocalLeader>wi <Plug>VimwikiDiaryIndex
+nmap <LocalLeader>w<LocalLeader>w <Plug>VimwikiMakeDiaryNote
+nmap <LocalLeader>wt :VimwikiTable<CR>
+
+" F4 키를 누르면 커서가 놓인 단어를 위키에서 검색한다.
+nnoremap <F4> :execute "VWS /" . expand("<cword>") . "/" <Bar> :lopen<CR>
+" Shift F4 키를 누르면 현재 문서를 링크한 모든 문서를 검색한다
+nnoremap <S-F4> :execute "VWB" <Bar> :lopen<CR>
+
+" Shift F4 키를 누르면 현재 문서를 링크한 모든 문서를 검색한다
+nnoremap <S-F4> :execute "VWB" <Bar> :lopen<CR>
+
+" vimscript support
+" auto update updated column for metadata
+
+
+function! LastModified()
+    if &modified
+        let save_cursor = getpos(".")
+        let n = min([10, line("$")])
+        keepjumps exe '1,' . n . 's#^\(.\{,10}updated\s*: \).*#\1' .
+              \ strftime('%Y-%m-%d %H:%M:%S +0900') . '#e'
+        call histdel('search', -1)
+        call setpos('.', save_cursor)
+    endif
+endfun
+autocmd BufWritePre *.md call LastModified()
+
+function! NewTemplate()
+
+    let l:wiki_directory = v:false
+
+    for wiki in g:vimwiki_list
+        if expand('%:p:h') . '/' == wiki.path
+            let l:wiki_directory = v:true
+            break
+        endif
+    endfor
+
+    if !l:wiki_directory
+        return
+    endif
+
+    if line("$") > 1
+        return
+    endif
+
+    let l:template = []
+    call add(l:template, '---')
+    call add(l:template, 'layout  : wiki')
+    call add(l:template, 'title   : ')
+    call add(l:template, 'summary : ')
+    call add(l:template, 'date    : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
+    call add(l:template, 'updated : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
+    call add(l:template, 'tags    : ')
+    call add(l:template, 'toc     : true')
+    call add(l:template, 'public  : true')
+    call add(l:template, 'parent  : ')
+    call add(l:template, 'latex   : false')
+    call add(l:template, '---')
+    call add(l:template, '* TOC')
+    call add(l:template, '{:toc}')
+    call add(l:template, '')
+    call add(l:template, '# ')
+    call setline(1, l:template)
+    execute 'normal! G'
+    execute 'normal! $'
+
+    echom 'new wiki page has created'
+endfunction
+
+autocmd BufRead,BufNewFile *.md call NewTemplate()
+
+augroup vimwikiauto
+    autocmd BufWritePre *wiki/*.md call LastModified()
+    autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
+augroup END
