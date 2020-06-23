@@ -6,6 +6,9 @@ set fileencodings=utf-8,cp949,default,latin1
 set shell=/bin/bash " http://stackoverflow.com/a/12231417
 set noerrorbells visualbell t_vb=
 
+set mouse=a
+set termguicolors
+
 " Indentation
 set cindent
 set autoindent
@@ -47,13 +50,34 @@ Plug 'tpope/vim-sensible'
 Plug 'simnalamburt/vim-mundo'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-vinegar'
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+" Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+
 Plug 'mhinz/vim-startify'
+
+let g:startify_commands = [
+  \ {'p': 'PlugUpdate'},
+  \ {'v': 'edit ~/.vimrc'},
+  \ ]
+let g:startify_files_number = 5
+
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Color Scheme
+" Plug 'chriskempson/base16-vim'
+Plug 'ayu-theme/ayu-vim'
+
+" Autocompletion by tab
+Plug 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 call plug#end()
+
+let ayucolor="dark"
+colorscheme ayu
 
 " Easy file save without switching IME
 cabbrev ㅈ w
@@ -62,6 +86,7 @@ cabbrev ㅈㅂ wq
 
 " Easy command-line mode
 nnoremap ; :
+nnoremap <Space>; :Commands<CR>
 
 " Easy home/end
 inoremap <C-a> <Esc>I
@@ -70,6 +95,9 @@ nnoremap <C-a> ^
 nnoremap <C-e> $
 vnoremap <C-a> ^
 vnoremap <C-e> $
+
+" Redo
+nnoremap U <C-r>
 
 " Easy delete key
 vnoremap <backspace> "_d
@@ -87,8 +115,8 @@ nnoremap <silent> <C-k> :resize +3<CR>
 nnoremap <silent> <C-l> :vertical resize +5<CR>
 
 " Tab navigations
-nnoremap <esc>t :tabnew<CR>
-nnoremap <esc>T :-tabnew<CR>
+nnoremap <C-t> :tabnew<CR>:Files<CR>
+"nnoremap <C-S-T> :-tabnew<CR>
 nnoremap <esc>1 1gt
 nnoremap <esc>2 2gt
 nnoremap <esc>3 3gt
@@ -98,6 +126,8 @@ nnoremap <esc>6 6gt
 nnoremap <esc>7 7gt
 nnoremap <esc>8 8gt
 nnoremap <esc>9 9gt
+
+nnoremap <Esc><Tab> :Buffers<CR>
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
