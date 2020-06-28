@@ -114,6 +114,9 @@ nnoremap <silent> <C-j> :resize -3<CR>
 nnoremap <silent> <C-k> :resize +3<CR>
 nnoremap <silent> <C-l> :vertical resize +5<CR>
 
+nnoremap <silent> <tab>w <C-w><C-w>
+nnoremap <silent> <tab>h <C-w><C-h>
+
 " Tab navigations
 nnoremap <C-t> :tabnew<CR>:Files<CR>
 "nnoremap <C-S-T> :-tabnew<CR>
@@ -127,7 +130,10 @@ nnoremap <Esc>7 7gt
 nnoremap <Esc>8 8gt
 nnoremap <Esc>9 9gt
 
+" Listing buffers
 nnoremap <Esc><Tab> :Buffers<CR>
+" Switching to the previously edited buffer
+nnoremap <silent> <tab><tab> :b#<CR>
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
