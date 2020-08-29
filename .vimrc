@@ -66,8 +66,6 @@ let g:startify_commands = [
   \ ]
 let g:startify_files_number = 5
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -124,7 +122,7 @@ nnoremap <silent> <tab>w <C-w><C-w>
 nnoremap <silent> <tab>h <C-w><C-h>
 
 " Tab navigations
-nnoremap <C-t> :tabnew<CR>:Files<CR>
+nnoremap <C-t> :tabnew<CR>
 "nnoremap <C-S-T> :-tabnew<CR>
 nnoremap <Esc>1 1gt
 nnoremap <Esc>2 2gt
