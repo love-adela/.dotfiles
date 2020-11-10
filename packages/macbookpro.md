@@ -25,7 +25,6 @@
 - virtualbox
 - java
 - notion
-- robo-3t
 
 `brew tap install`로 설치한거
 - mongodb
