@@ -5,16 +5,11 @@
 - vim
 - ripgrep
 - fzf
-- libomp
 - terraform
 - awscli
 - node
 - yarn
 - gpg
-- riscv/riscv
-- qemu 
-- pycharm
-- mongodb-community
 
 `brew cask install`로 설치한거
 - iterm2
@@ -25,6 +20,3 @@
 - virtualbox
 - java
 - notion
-
-`brew tap install`로 설치한거
-- mongodb
