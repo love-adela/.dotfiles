@@ -52,7 +52,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'tpope/vim-sensible'
-"Plug 'simnalamburt/vim-tiny-ime', { 'do' : './build' }
 Plug 'simnalamburt/vim-mundo'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-vinegar'
@@ -69,6 +68,8 @@ let g:startify_files_number = 5
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+Plug 'sheerun/vim-polyglot'
 
 " Color Scheme
 " Plug 'chriskempson/base16-vim'
