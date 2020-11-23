@@ -20,3 +20,7 @@
 - virtualbox
 - java
 - notion
+- font-fira-code
+
+`brew tap으로 깐거` 
+- cask-fonts
