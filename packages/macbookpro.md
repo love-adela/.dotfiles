@@ -10,6 +10,8 @@
 - node
 - yarn
 - gpg
+- wget
+- weechat
 
 `brew cask install`로 설치한거
 - iterm2
