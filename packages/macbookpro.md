@@ -23,6 +23,7 @@
 - java
 - notion
 - font-fira-code
+- julia
 
 `brew tap으로 깐거` 
 - cask-fonts
