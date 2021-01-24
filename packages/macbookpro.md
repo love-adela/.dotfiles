@@ -13,6 +13,7 @@
 - wget
 - weechat
 - ext4fuse
+- hfsutils
 
 `brew install -- cask`로 설치한거
 - iterm2
