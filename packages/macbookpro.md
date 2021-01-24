@@ -14,6 +14,7 @@
 - weechat
 - ext4fuse
 - hfsutils
+- e2fsprogs
 
 `brew install -- cask`로 설치한거
 - iterm2
