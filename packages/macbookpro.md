@@ -28,6 +28,7 @@
 - font-fira-code
 - julia
 - osxfuse
+- slack
 
 `brew tap으로 깐거` 
 - cask-fonts
