@@ -1,14 +1,14 @@
 # .dotfiles
  🗄  My dotfiles
 
-Import or initialize secrets:
-   SSH private keys
+Make Symbolic Link to your local directory
+Import or initialize secrets: SSH private keys
 
-# zsh
+## zsh
 git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
 ln -sf ~/.dotfiles/.zshrc ~
 
-# ssh
+## ssh
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 ln -sf ~/.dotfiles/.ssh/config ~/.ssh
