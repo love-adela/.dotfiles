@@ -12,6 +12,7 @@
 - font-fira-code
 - discord 
 - slack
+- visual-studio-code
 
 `brew tap`으로 설치한 거
 - homebrew/cask-fonts
