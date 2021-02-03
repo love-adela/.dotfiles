@@ -1,6 +1,7 @@
 `brew install`로 설치한 거 
 - ripgrep
 - fzf
+- vim
 
 `brew install --cask`로 설치한 거
 
