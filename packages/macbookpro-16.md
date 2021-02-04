@@ -2,6 +2,7 @@
 - ripgrep
 - fzf
 - vim
+- neovim
 
 `brew install --cask`로 설치한 거
 
