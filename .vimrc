@@ -41,46 +41,56 @@ augroup setgroup
 augroup END
 set laststatus=2
 
-call plug#begin('~/.vim/plugged')
+" List of Plugins
 
-" Themes
-Plug 'vim-airline/vim-airline'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+let s:use_coc = (has('nvim') ? has('nvim-0.3.2') : has('patch-8.0.1453')) && executable('yarn')
+try
+  call plug#begin('~/.vim/plugged')
 
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'tpope/vim-sensible'
-Plug 'simnalamburt/vim-mundo'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-vinegar'
-" Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+  " Visual 
+  Plug 'ayu-theme/ayu-vim'
+  Plug 'vim-airline/vim-airline'
+  let g:airline_powerline_fonts = 1
+  let g:airline#extensions#tabline#enabled = 1
+  Plug 'junegunn/rainbow_parentheses.vim'
 
-Plug 'mhinz/vim-startify'
+  Plug 'tpope/vim-fugitive'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'tpope/vim-sensible'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-vinegar'
+  Plug 'mhinz/vim-startify'
 
-let g:startify_commands = [
-  \ {'p': 'PlugUpdate'},
-  \ {'v': 'edit ~/.vimrc'},
-  \ ]
-let g:startify_files_number = 5
+  let g:startify_commands = [
+    \ {'p': 'PlugUpdate'},
+    \ {'v': 'edit ~/.vimrc'},
+    \ ]
+  let g:startify_files_number = 5
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+  " IDE
+  if s:use_coc
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  endif
 
-Plug 'sheerun/vim-polyglot'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 
-" Color Scheme
-" Plug 'chriskempson/base16-vim'
-Plug 'ayu-theme/ayu-vim'
+  " Syntax
+  Plug 'sheerun/vim-polyglot'
 
-" Autocompletion by tab
-Plug 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType = "<c-n>"
+  " Util
+  Plug 'simnalamburt/vim-mundo'
 
-call plug#end()
+  " Autocompletion by tab
+  Plug 'ervandew/supertab'
+  let g:SuperTabDefaultCompletionType = "<c-n>"
 
+  call plug#end()
+  
+catch /^Vim\%((\a\+)\)\=:E117/
+endtry
+
+" My vim theme
 let ayucolor="dark"
 colorscheme ayu
 
@@ -147,96 +157,3 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-
-" Viwiki
-let maplocalleader = "\\"
-let g:vimwiki_list = [
-    \{
-    \   'path': '~/workspace/adela.love/_wiki',
-    \   'ext' : '.md',
-    \   'diary_rel_path': '.',
-    \}
-\]
-
-let g:vimwiki_conceallevel = 0
-
-" vimwiki command
-command! WikiIndex :VimwikiIndex
-nmap <LocalLeader>ww <Plug>VimwikiIndex
-nmap <LocalLeader>wi <Plug>VimwikiDiaryIndex
-nmap <LocalLeader>w<LocalLeader>w <Plug>VimwikiMakeDiaryNote
-nmap <LocalLeader>wt :VimwikiTable<CR>
-
-" F4 키를 누르면 커서가 놓인 단어를 위키에서 검색한다.
-nnoremap <F4> :execute "VWS /" . expand("<cword>") . "/" <Bar> :lopen<CR>
-" Shift F4 키를 누르면 현재 문서를 링크한 모든 문서를 검색한다
-nnoremap <S-F4> :execute "VWB" <Bar> :lopen<CR>
-
-" Shift F4 키를 누르면 현재 문서를 링크한 모든 문서를 검색한다
-nnoremap <S-F4> :execute "VWB" <Bar> :lopen<CR>
-
-" vimscript support
-" auto update updated column for metadata
-
-
-function! LastModified()
-    if &modified
-        let save_cursor = getpos(".")
-        let n = min([10, line("$")])
-        keepjumps exe '1,' . n . 's#^\(.\{,10}updated\s*: \).*#\1' .
-              \ strftime('%Y-%m-%d %H:%M:%S +0900') . '#e'
-        call histdel('search', -1)
-        call setpos('.', save_cursor)
-    endif
-endfun
-autocmd BufWritePre *.md call LastModified()
-
-function! NewTemplate()
-
-    let l:wiki_directory = v:false
-
-    for wiki in g:vimwiki_list
-        if expand('%:p:h') . '/' == wiki.path
-            let l:wiki_directory = v:true
-            break
-        endif
-    endfor
-
-    if !l:wiki_directory
-        return
-    endif
-
-    if line("$") > 1
-        return
-    endif
-
-    let l:template = []
-    call add(l:template, '---')
-    call add(l:template, 'layout  : wiki')
-    call add(l:template, 'title   : ')
-    call add(l:template, 'summary : ')
-    call add(l:template, 'date    : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
-    call add(l:template, 'updated : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
-    call add(l:template, 'tags    : ')
-    call add(l:template, 'toc     : true')
-    call add(l:template, 'public  : true')
-    call add(l:template, 'parent  : ')
-    call add(l:template, 'latex   : false')
-    call add(l:template, '---')
-    call add(l:template, '* TOC')
-    call add(l:template, '{:toc}')
-    call add(l:template, '')
-    call add(l:template, '# ')
-    call setline(1, l:template)
-    execute 'normal! G'
-    execute 'normal! $'
-
-    echom 'new wiki page has created'
-endfunction
-
-autocmd BufRead,BufNewFile *.md call NewTemplate()
-
-augroup vimwikiauto
-    autocmd BufWritePre *wiki/*.md call LastModified()
-    autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
-augroup END
