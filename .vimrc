@@ -25,6 +25,7 @@ set noswapfile
 set nowrap
 set updatetime=500
 set termguicolors
+set mouse=a
 
 " History
 if has('persistent_undo')
@@ -229,6 +230,13 @@ try
   Plug 'simnalamburt/vim-mundo'
   Plug 'godlygeek/tabular'
   Plug 'justinmk/vim-dirvish'
+  Plug 'mhinz/vim-startify'
+
+  let g:startify_commands = [
+    \ {'p': 'PlugUpdate'},
+    \ {'v': 'edit ~/.vimrc'},
+    \ ]
+  let g:startify_files_number = 5
 
   call plug#end()
 
