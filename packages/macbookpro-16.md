@@ -2,6 +2,7 @@
 - ripgrep
 - fzf
 - neovim
+- node yarn
 
 `brew install --cask`로 설치한 거
 

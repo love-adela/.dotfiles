@@ -70,6 +70,7 @@ try
   " IDE
   if s:use_coc
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
   endif
 
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }

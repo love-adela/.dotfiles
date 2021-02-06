@@ -96,8 +96,8 @@ if (( $+commands[lsd] )); then
   alias ll='lsd -l --date=relative --group-dirs=first --blocks=permission,user,size,date,name'
   alias lt='lsd --tree --depth=2 --date=relative --group-dirs=first'
 else
-  alias l='ls -alh'
-  alias ll='ls -lh'
+  alias l='ls -alhG'
+  alias ll='ls -lhG'
 fi
 # alias rm='rm -I'
 alias mv='mv -i'
@@ -148,11 +148,13 @@ export AWS_SDK_LOAD_CONFIG=true
 # EDITOR나 VISUAL 환경변수 안에 'vi'가 있으면 자동으로 emacs-like key binding 해제 된다고 함.
 # 자세한 내용은 https://github.com/simnalamburt/.dotfiles/blob/master/.zshrc 참고 
 
-if (( $+commands[vim] )); then
-  export EDITOR=vim
-  bindkey -e
-elif (( $+commands[nvim] )); then
+if (( $+commands[nvim] )); then
   export EDITOR=nvim
+  alias vi=nvim
+  alias vim=nvim
+  bindkey -e
+elif (( $+commands[vim] )); then
+  export EDITOR=vim
   bindkey -e
 fi
 
