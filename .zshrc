@@ -96,8 +96,9 @@ if (( $+commands[lsd] )); then
   alias ll='lsd -l --date=relative --group-dirs=first --blocks=permission,user,size,date,name'
   alias lt='lsd --tree --depth=2 --date=relative --group-dirs=first'
 else
-  alias l='ls -alhG'
-  alias ll='ls -lhG'
+  alias ls='ls -G'
+  alias l='ls -alh'
+  alias ll='ls -lh'
 fi
 # alias rm='rm -I'
 alias mv='mv -i'
