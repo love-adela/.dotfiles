@@ -15,6 +15,8 @@
 - discord 
 - slack
 - visual-studio-code
+- google-chrome
+- microsoft edge
 
 `brew tap`으로 설치한 거
 - homebrew/cask-fonts
