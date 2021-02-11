@@ -97,6 +97,8 @@ nnoremap <C-a> ^
 nnoremap <C-e> $
 vnoremap <C-a> ^
 vnoremap <C-e> $
+" Easy redo key
+nnoremap U <C-r>
 " Easy horizontal scrolling
 noremap <esc>l 3zl
 noremap <esc>h 3zh
