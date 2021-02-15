@@ -17,6 +17,7 @@
 - visual-studio-code
 - google-chrome
 - microsoft edge
+- virtualbox
 
 `brew tap`으로 설치한 거
 - homebrew/cask-fonts
