@@ -8,6 +8,7 @@ scriptencoding utf-8
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,cp949,default,latin1
+set termencoding=utf-8
 set shell=/bin/bash " http://stackoverflow.com/a/12231417
 set diffopt+=iwhite,vertical
 set pastetoggle=<F8>
@@ -26,6 +27,21 @@ set nowrap
 set updatetime=500
 set termguicolors
 set mouse=a
+set history=999
+set foldmethod=marker
+set laststatus=2
+set t_Co=256
+set fillchars+=stl:\, stlnc:\
+set term=xterm-256color
+
+"
+" Team dev chapter
+"
+language en_US.UTF-8
+syntax on
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2
+autocmd FileType html setlocal ts=2 sts=2 sw=2
+autocmd FileType python setlocal ts=4 sts=4 sw=4
 
 " History
 if has('persistent_undo')
@@ -38,11 +54,12 @@ endif
 set cindent
 set autoindent
 set smartindent
+set bs=2
 
 " Tab
 set softtabstop=2
 set shiftwidth=2
-set expandtab
+set expandtab ts=4 sw=4
 
 " Searching
 set incsearch
