@@ -166,6 +166,10 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
+# Use Node.js 14.x by default
+export PATH="/usr/local/opt/node@14/bin:$PATH"
+
+
 #
 # Load local configs
 #
