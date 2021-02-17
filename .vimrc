@@ -31,8 +31,6 @@ set history=999
 set foldmethod=marker
 set laststatus=2
 set t_Co=256
-set fillchars+=stl:\, stlnc:\
-set term=xterm-256color
 
 "
 " Team dev chapter
