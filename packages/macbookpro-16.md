@@ -5,6 +5,7 @@
 - git
 - python@3.9
 - node node@14 yarn
+- gnupg
 
 `brew install --cask`로 설치한 거
 
