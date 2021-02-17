@@ -159,6 +159,13 @@ elif (( $+commands[vim] )); then
   bindkey -e
 fi
 
+
+#
+# fzf
+#
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
 #
 # Load local configs
 #
