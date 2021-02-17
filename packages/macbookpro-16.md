@@ -17,7 +17,6 @@
 - google-chrome
 - microsoft-edge
 - virtualbox
-- keybase
 
 `brew tap`으로 설치한 거
 - homebrew/cask-fonts
