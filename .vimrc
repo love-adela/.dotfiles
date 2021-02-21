@@ -26,7 +26,6 @@ set noswapfile
 set nowrap
 set updatetime=500
 set termguicolors
-set mouse=a
 set history=999
 set foldmethod=marker
 set laststatus=2
@@ -207,7 +206,7 @@ try
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
     Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
+    "Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
     Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
     Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
     Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
