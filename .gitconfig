@@ -1,0 +1,18 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Adela Chung
+	email = love.adelar@gmail.com
+[init]
+	defaultBranch = main
+[log]
+	date = iso8601
+[color]
+	ui = auto
+[core]
+	pager = less -+XF -SQc
+[fetch]
+	prune = yes
+[merge]
+	conflictstyle = diff3
+[status]
+	showStash = true
