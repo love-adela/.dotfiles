@@ -18,7 +18,6 @@
 - google-chrome
 - microsoft-edge
 - virtualbox
-- steam
 
 `brew tap`으로 설치한 거
 - homebrew/cask-fonts
