@@ -7,6 +7,7 @@
 - node node@14 yarn
 - gnupg
 - aws
+- awscli
 
 `brew install --cask`로 설치한 거
 
