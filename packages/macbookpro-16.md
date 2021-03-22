@@ -8,6 +8,7 @@
 - gnupg
 - aws
 - awscli
+- openvpn
 
 `brew install --cask`로 설치한 거
 
