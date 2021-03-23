@@ -8,7 +8,6 @@
 - gnupg
 - aws
 - awscli
-- openvpn
 
 `brew install --cask`로 설치한 거
 
@@ -21,6 +20,7 @@
 - google-chrome
 - microsoft-edge
 - virtualbox
+- openvpn-connect
 
 `brew tap`으로 설치한 거
 - homebrew/cask-fonts
