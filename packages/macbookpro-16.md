@@ -8,6 +8,7 @@
 - gnupg
 - aws
 - awscli
+- mysql
 
 `brew install --cask`로 설치한 거
 
