@@ -16,3 +16,5 @@
 	conflictstyle = diff3
 [status]
 	showStash = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
