@@ -22,6 +22,7 @@
 - microsoft-edge
 - virtualbox
 - openvpn-connect
+- intellij-idea
 
 `brew tap`으로 설치한 거
 - homebrew/cask-fonts
