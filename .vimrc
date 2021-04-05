@@ -26,6 +26,7 @@ set noswapfile
 set nowrap
 set updatetime=500
 set termguicolors
+
 set history=999
 set foldmethod=marker
 set laststatus=2
@@ -249,6 +250,9 @@ try
   Plug 'justinmk/vim-dirvish'
   Plug 'mhinz/vim-startify'
 
+  " Theme
+  Plug 'dracula/vim', { 'as': 'dracula' }
+
   let g:startify_commands = [
     \ {'p': 'PlugUpdate'},
     \ {'v': 'edit ~/.vimrc'},
@@ -382,9 +386,9 @@ endtry
 "
 " My vim theme
 "
-let ayucolor = 'dark'
+color dracula
 try
-  colorscheme ayu
+  colorscheme dracula
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme elflord
 endtry
