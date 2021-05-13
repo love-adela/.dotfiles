@@ -176,3 +176,5 @@ export PATH="/usr/local/opt/node@14/bin:$PATH"
 if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
 fi
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
