@@ -9,6 +9,8 @@
 - aws
 - awscli
 - mysql
+- pyenv
+- pyenv-virtualenv
 
 `brew install --cask`로 설치한 거
 
@@ -23,6 +25,8 @@
 - virtualbox
 - openvpn-connect
 - intellij-idea
+- docker
+- lens
 
 `brew tap`으로 설치한 거
 - homebrew/cask-fonts
