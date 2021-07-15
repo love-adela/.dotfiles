@@ -1,9 +1,6 @@
 " Require Vim ≥8.0 or Neovim
-" See https://github.com/simnalamburt/.dotfiles/blob/master/.vimrc
 
-"
 " General configs
-"
 scriptencoding utf-8
 set encoding=utf-8
 set fileencoding=utf-8
@@ -34,7 +31,6 @@ set t_Co=256
 
 "
 " Team dev chapter
-"
 language en_US.UTF-8
 syntax on
 autocmd FileType javascript setlocal ts=2 sts=2 sw=2
@@ -93,9 +89,7 @@ elseif has('nvim') ? has('nvim-0.2') : 1
 endif
 
 
-"
 " Key mappings
-"
 let g:mapleader = ','
 
 " Easy file save without switching IME
@@ -191,207 +185,186 @@ endfunction
 nnoremap <F9> :call <SID>DragSelectMode()<CR>
 
 
-"
 " List of plugins
-"
 let s:use_coc = (has('nvim') ? has('nvim-0.3.2') : has('patch-8.0.1453')) && executable('yarn')
-try
-  call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/plugged')
 
-  " Configs
-  Plug 'tpope/vim-sensible'
-  Plug 'vim-utils/vim-interruptless'
+" Configs
+Plug 'tpope/vim-sensible'
+Plug 'vim-utils/vim-interruptless'
 
-  " IDE
-  if s:use_coc
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
-    "Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'simnalamburt/coc-java', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile', 'rtp': 'packages/emoji'}
-    if executable('clangd')
-      Plug 'clangd/coc-clangd', {'do': 'yarn install --frozen-lockfile'}
-    endif
-    "Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'ervandew/supertab'
-    Plug 'junegunn/fzf'
+" IDE
+if s:use_coc
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'simnalamburt/coc-java', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile', 'rtp': 'packages/emoji'}
+  if executable('clangd')
+    Plug 'clangd/coc-clangd', {'do': 'yarn install --frozen-lockfile'}
   endif
-  Plug 'ryanoasis/vim-devicons'
-  Plug 'preservim/nerdtree'
-  Plug 'tpope/vim-fugitive'
+  "Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'ervandew/supertab'
+  Plug 'junegunn/fzf'
+endif
+Plug 'ryanoasis/vim-devicons'
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-fugitive'
 
-  " Visual
-  Plug 'vim-airline/vim-airline'
-  Plug 'nathanaelkane/vim-indent-guides'
-  Plug 'ntpeters/vim-better-whitespace'
-  Plug 'ayu-theme/ayu-vim'
+" Visual
+Plug 'vim-airline/vim-airline'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'ntpeters/vim-better-whitespace'
 
-  " Syntax
-  let g:polyglot_disabled = ['v'] | Plug 'sheerun/vim-polyglot'
+" Syntax
+let g:polyglot_disabled = ['v'] | Plug 'sheerun/vim-polyglot'
 
-  " Format
-  Plug 'sgur/vim-editorconfig'
+" Format
+Plug 'sgur/vim-editorconfig'
 
-  " Blink
-  Plug 'farmergreg/vim-lastplace'
-  Plug 'rhysd/clever-f.vim'
-  Plug 'easymotion/vim-easymotion'
-  Plug 'haya14busa/incsearch.vim'
-  Plug 'haya14busa/incsearch-easymotion.vim'
+" Blink
+Plug 'farmergreg/vim-lastplace'
+Plug 'rhysd/clever-f.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
 
-  " Util
-  Plug 'simnalamburt/vim-mundo'
-  Plug 'godlygeek/tabular'
-  Plug 'justinmk/vim-dirvish'
-  Plug 'mhinz/vim-startify'
+" Util
+Plug 'simnalamburt/vim-mundo'
+Plug 'godlygeek/tabular'
+Plug 'justinmk/vim-dirvish'
+Plug 'mhinz/vim-startify'
 
-  " Theme
-  Plug 'dracula/vim', { 'as': 'dracula' }
+" Theme
+Plug 'sainnhe/everforest'
 
-  let g:startify_commands = [
-    \ {'p': 'PlugUpdate'},
-    \ {'v': 'edit ~/.vimrc'},
-    \ ]
-  let g:startify_files_number = 5
+let g:startify_commands = [
+  \ {'p': 'PlugUpdate'},
+  \ {'v': 'edit ~/.vimrc'},
+  \ ]
+let g:startify_files_number = 5
 
-  call plug#end()
+call plug#end()
 
 
-  "
-  " Configs for plugins
-  "
-  if s:use_coc
-    " coc.nvim
-    let g:coc_disable_startup_warning = 1
+"Theme
+colorscheme everforest
 
-    nnoremap <silent> K :call <SID>show_documentation()<CR>
-    function! s:show_documentation()
-      if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-      else
-        call CocActionAsync('doHover')
-      endif
-    endfunction
+" Configs for plugins
+if s:use_coc
+let g:coc_disable_startup_warning = 1
 
-    " coc-highlight
-    augroup vimrc_highlight
-      autocmd!
-      autocmd CursorHold * silent call <SID>highlight()
-    augroup END
-    function! s:highlight()
-      if exists('*CocActionAsync')
-        call CocActionAsync('highlight')
-      endif
-    endfunction
-
-    " coc-prettier
-    command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-    " supertab
-    let g:SuperTabDefaultCompletionType = "<c-n>"
-
-    " fzf
-    nnoremap <F5> :call <SID>lsp_menu()<CR>
-    function! s:lsp_menu()
-      call fzf#run({
-      \ 'source': [
-      \   'rename',
-      \   'jumpDefinition',
-      \   'jumpDeclaration',
-      \   'jumpImplementation',
-      \   'jumpTypeDefinition',
-      \   'jumpReferences',
-      \   'diagnosticInfo',
-      \   'diagnosticNext',
-      \   'diagnosticPrevious',
-      \   'format',
-      \   'openLink',
-      \   'doQuickfix',
-      \   'doHover',
-      \   'refactor',
-      \ ],
-      \ 'sink': function('CocActionAsync'),
-      \ 'options': '+m',
-      \ 'down': 10 })
-    endfunction
-  endif
-
-  " nerdtree
-  noremap <silent> <C-n> :NERDTreeToggle<CR>
-  function! s:nerdtree_startup()
-    if exists('s:std_in') || argc() != 1 || !isdirectory(argv()[0])
-      return
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    else
+      call CocActionAsync('doHover')
     endif
-    execute 'NERDTree' argv()[0]
-    wincmd p
-    enew
-    execute 'cd '.argv()[0]
-    NERDTreeFocus
   endfunction
-  augroup vimrc_nerdtree
+
+  " coc-highlight
+  augroup vimrc_highlight
     autocmd!
-
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * call s:nerdtree_startup()
-    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    autocmd CursorHold * silent call <SID>highlight()
   augroup END
-
-  " vim-indent-guides
-  nmap <leader>i <Plug>IndentGuidesToggle
-  let g:indent_guides_enable_on_vim_startup = 1
-  let g:indent_guides_auto_colors = 0
-  let g:indent_guides_guide_size = 1
-  let g:indent_guides_start_level = 2
-  let g:indent_guides_default_mapping = 0
-
-  " clever-f.vim
-  let g:clever_f_across_no_line = 1
-  let g:clever_f_smart_case = 1
-
-  " incsearch.vim
-  let g:incsearch#auto_nohlsearch = 1
-  map n  <Plug>(incsearch-nohl-n)
-  map N  <Plug>(incsearch-nohl-N)
-  map *  <Plug>(incsearch-nohl-*)
-  map #  <Plug>(incsearch-nohl-#)
-  map g* <Plug>(incsearch-nohl-g*)
-  map g# <Plug>(incsearch-nohl-g#)
-
-  " incsearch-easymotion.vim
-  function! s:incsearch_config(...) abort
-    return incsearch#util#deepextend(deepcopy({
-    \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-    \   'keymap': {
-    \     "\<C-l>": '<Over>(easymotion)'
-    \   },
-    \   'is_expr': 0
-    \ }), get(a:, 1, {}))
+  function! s:highlight()
+    if exists('*CocActionAsync')
+      call CocActionAsync('highlight')
+    endif
   endfunction
-  noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
-  noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
-  noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
 
-  " mundo.vim
-  let g:mundo_right = 1
-  nnoremap <leader>g :MundoToggle<CR>
-catch /^Vim\%((\a\+)\)\=:E117/
-endtry
+  " supertab
+  let g:SuperTabDefaultCompletionType = "<c-n>"
 
+  " fzf
+  nnoremap <F5> :call <SID>lsp_menu()<CR>
+  function! s:lsp_menu()
+    call fzf#run({
+    \ 'source': [
+    \   'rename',
+    \   'jumpDefinition',
+    \   'jumpDeclaration',
+    \   'jumpImplementation',
+    \   'jumpTypeDefinition',
+    \   'jumpReferences',
+    \   'diagnosticInfo',
+    \   'diagnosticNext',
+    \   'diagnosticPrevious',
+    \   'format',
+    \   'openLink',
+    \   'doQuickfix',
+    \   'doHover',
+    \   'refactor',
+    \ ],
+    \ 'sink': function('CocActionAsync'),
+    \ 'options': '+m',
+    \ 'down': 10 })
+  endfunction
+endif
 
-"
-" My vim theme
-"
-color dracula
-try
-  colorscheme dracula
-catch /^Vim\%((\a\+)\)\=:E185/
-  colorscheme elflord
-endtry
+" nerdtree
+noremap <silent> <C-n> :NERDTreeToggle<CR>
+function! s:nerdtree_startup()
+  if exists('s:std_in') || argc() != 1 || !isdirectory(argv()[0])
+    return
+  endif
+  execute 'NERDTree' argv()[0]
+  wincmd p
+  enew
+  execute 'cd '.argv()[0]
+  NERDTreeFocus
+endfunction
+augroup vimrc_nerdtree
+  autocmd!
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * call s:nerdtree_startup()
+  autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
+
+" vim-indent-guides
+nmap <leader>i <Plug>IndentGuidesToggle
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_default_mapping = 0
+
+" clever-f.vim
+let g:clever_f_across_no_line = 1
+let g:clever_f_smart_case = 1
+
+" incsearch.vim
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+
+" incsearch-easymotion.vim
+function! s:incsearch_config(...) abort
+  return incsearch#util#deepextend(deepcopy({
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {
+  \     "\<C-l>": '<Over>(easymotion)'
+  \   },
+  \   'is_expr': 0
+  \ }), get(a:, 1, {}))
+endfunction
+noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
+noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+
+" mundo.vim
+let g:mundo_right = 1
+nnoremap <leader>g :MundoToggle<CR>
+
 
 function! s:fg(item, color)
   execute printf('highlight %s guifg=%s', a:item, a:color)
@@ -424,11 +397,7 @@ highlight MatchParen cterm=NONE gui=NONE
 call s:bg('MatchParen', s:match_color)
 call s:bg('CocHighlightText', s:match_color)
 
-
-
-"
 " Define a 'vimrc' augroup
-"
 augroup vimrc
   autocmd!
 
