@@ -8,9 +8,10 @@
 - gnupg
 - aws
 - awscli
-- mysql
 - pyenv
 - pyenv-virtualenv
+- mysql-client
+- mysql
 
 `brew install --cask`로 설치한 거
 
@@ -27,6 +28,7 @@
 - intellij-idea
 - docker
 - lens
+- authy
 
 `brew tap`으로 설치한 거
 - homebrew/cask-fonts
