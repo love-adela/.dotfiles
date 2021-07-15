@@ -1,5 +1,8 @@
 # This is Git's per-user configuration file.
 [user]
+    name = Jiyun Chung
+    email = jiyun@dable.io
+[host]
 	name = Adela Chung
 	email = love.adelar@gmail.com
 [init]
