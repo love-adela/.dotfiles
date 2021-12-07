@@ -14,6 +14,7 @@ set switchbuf+=usetab,split
 set startofline
 set splitbelow
 set lazyredraw
+set mouse=a
 set nobackup
 set nowritebackup
 set nocompatible
