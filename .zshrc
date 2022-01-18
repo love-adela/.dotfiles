@@ -169,6 +169,8 @@ fi
 # Use Node.js 14.x by default
 export PATH="/usr/local/opt/node@14/bin:$PATH"
 
+export PY_RANGERS_ENV="dev"
+
 #
 # Load local configs
 #
@@ -180,3 +182,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export PATH="/usr/local/sbin:$PATH"
+
+# For pyenv-virtualenv initallization
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+eval "$(pyenv init --path)"
