@@ -3,6 +3,7 @@
 - python@3.9
 - ipython
 - yarn
+- node
 
 `brew install --cask`로 설치한 거
 
